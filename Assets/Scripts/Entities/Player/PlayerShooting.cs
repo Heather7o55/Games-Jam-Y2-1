@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
+    public static AudioClip clip;
     public AudioSource audioSource;
+    public GameObject AttackBox;
     public static Weapon activeWeapon = Weapon.Sword;
     private Weapon lastActiveWeapon;
     private CameraController cameraController;
@@ -21,6 +23,7 @@ public class PlayerShooting : MonoBehaviour
     }
     void Update()
     {
+        
         if(lastActiveWeapon != activeWeapon)
         {
             // switch(activeWeapon)
@@ -32,21 +35,25 @@ public class PlayerShooting : MonoBehaviour
         }
         // if(UIManager.isPaused) return;
         Attack();
+        AttackBox.SetActive(weapon.canAttack);
+        if(weapon.canAttack)
+        {
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
     }
     void Attack()
     {
         if(Input.GetButton("Fire1"))
         {
-            weapon.AttackBox.SetActive(true);
-            audioSource.Play();
+            weapon.StartCooldown(0.2f);
         }
-        else weapon.AttackBox.SetActive(false);
+        
         string name = "Sword";
         // switch(activeWeapon)
         // {
         //     case Weapon.Sword:
             
         // }
-        audioSource.Play();
     }
 }

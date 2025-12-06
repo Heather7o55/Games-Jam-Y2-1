@@ -10,7 +10,7 @@ public enum Weapon
 public class WeaponController : MonoBehaviour
 {
     public bool canAttack = true;
-    public GameObject AttackBox;
+    
     
     /* "CreateBullet" takes in the range, aka the spread, the bullet speed, the damage,
     the spawnpoint, the rotation transform of the character its spawning from, and the bullet object it wants to spawn  */
@@ -34,8 +34,8 @@ public class WeaponController : MonoBehaviour
     // }
     private IEnumerator CoolDown(float timer)
     {
-        canAttack = false;
-        yield return new WaitForSeconds(timer);
         canAttack = true;
+        yield return new WaitForSeconds(timer);
+        canAttack = false;
     }
 }
