@@ -12,17 +12,17 @@ public class PlayerController : BaseEntity
     private bool isSliding = false;
     private float moveSpeed = 10f;
     private float sprintModifier = 1.5f;
-    private CameraController cameraScript;
+    //private CameraController cameraScript;
     private Vector2 moveDirection;
-    private GameObject HUD;
-    public Animator anim;
+    //private GameObject HUD;
+   // public Animator anim;
     public SpriteRenderer[] playerSprites;
     void Start()
     {
         maxHealth = 10;
         Setup();
-        cameraScript = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
-        HUD = GameObject.FindWithTag("HUD");
+        //cameraScript = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
+        //HUD = GameObject.FindWithTag("HUD");
     }
     void Update()
     {
@@ -30,23 +30,19 @@ public class PlayerController : BaseEntity
         // Debug.Log("The current <b>timestamp</b> is " + Time.time);
         if(UIManager.isPaused) return;
         UpdateMovement();
-        UpdateHUD();
-        UpdateCamera();
+        //UpdateHUD();
+        //UpdateCamera();
     }
-    private void UpdateHUD()
-    {
-        HUD.GetComponentInChildren<Animator>().SetFloat("Speed", currentHealth / 10f);
-    }
+    // private void UpdateHUD()
+    // {
+    //     HUD.GetComponentInChildren<Animator>().SetFloat("Speed", currentHealth / 10f);
+    // }
     private void UpdateMovement()
     {
         moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         moveDirection.Normalize();
-        if((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.Space)) && !isSliding && !isSlideCooldown)
-            Slide();
-        else if(Input.GetKey(KeyCode.LeftShift) && !isSliding)
-            selfRigidBody.linearVelocity = moveDirection * moveSpeed * sprintModifier;
-        else if(!isSliding)
-            selfRigidBody.linearVelocity = moveDirection * moveSpeed;
+        selfRigidBody.linearVelocity = moveDirection * moveSpeed;
+
     }
     
     private void Slide()
@@ -57,15 +53,15 @@ public class PlayerController : BaseEntity
         selfRigidBody.AddForce(moveDirection * slideSpeed);
         StartCoroutine(StopSlide());
     }
-    private void UpdateCamera()
-    {
-        if(isSliding)
-            cameraScript.ZoomCamera(60f, 15f);
-        else if(Input.GetKey(KeyCode.LeftShift))
-            cameraScript.ZoomCamera(66f, 15f);
-        else 
-            cameraScript.ZoomCamera(64f, 15f);
-    }
+    // private void UpdateCamera()
+    // {
+    //     if(isSliding)
+    //         cameraScript.ZoomCamera(60f, 15f);
+    //     else if(Input.GetKey(KeyCode.LeftShift))
+    //         cameraScript.ZoomCamera(66f, 15f);
+    //     else 
+    //         cameraScript.ZoomCamera(64f, 15f);
+    // }
     IEnumerator StopSlide()
     {
         yield return new WaitForSeconds(slideCoolDown);

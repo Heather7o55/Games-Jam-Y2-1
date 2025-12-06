@@ -9,7 +9,7 @@ public enum Weapon
     }
 public class WeaponController : MonoBehaviour
 {
-    public bool canAttack = true;
+    public bool canAttack = false;
     
     
     /* "CreateBullet" takes in the range, aka the spread, the bullet speed, the damage,

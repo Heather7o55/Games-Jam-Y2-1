@@ -6,6 +6,7 @@ public class PlayerShooting : MonoBehaviour
 {
     public GameObject AttackBox;
     public static Weapon activeWeapon = Weapon.Sword;
+    public Animator anim;
     private Weapon lastActiveWeapon;
     private CameraController cameraController;
     private WeaponController weapon;
@@ -34,6 +35,17 @@ public class PlayerShooting : MonoBehaviour
         // if(UIManager.isPaused) return;
         Attack();
         AttackBox.SetActive(weapon.canAttack);
+        if(weapon.canAttack)
+        {
+            anim.Play("WalkingPlayer");
+        }
+        else
+        {
+            if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+                {
+                    anim.Play("AttackPlayer");
+                }
+        }
     }
     void Attack()
     {
