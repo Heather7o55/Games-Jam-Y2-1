@@ -23,25 +23,30 @@ public class PlayerShooting : MonoBehaviour
     {
         if(lastActiveWeapon != activeWeapon)
         {
-            switch(activeWeapon)
-            {
-                case Weapon.Sword:
-                    break;
-            }
+            // switch(activeWeapon)
+            // {
+            //     case Weapon.Sword:
+            //         break;
+            // }
             lastActiveWeapon = activeWeapon;
         }
         // if(UIManager.isPaused) return;
-        if(Input.GetButton("Fire1") && weapon.canAttack)
-            Attack();
+        Attack();
     }
     void Attack()
     {
-        string name = "Sword";
-        switch(activeWeapon)
+        if(Input.GetButton("Fire1"))
         {
-            case Weapon.Sword:
-            
+            weapon.AttackBox.SetActive(true);
+            audioSource.Play();
         }
+        else weapon.AttackBox.SetActive(false);
+        string name = "Sword";
+        // switch(activeWeapon)
+        // {
+        //     case Weapon.Sword:
+            
+        // }
         audioSource.Play();
     }
 }
