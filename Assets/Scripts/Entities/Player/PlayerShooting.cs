@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    public static AudioClip clip;
-    public AudioSource audioSource;
     public GameObject AttackBox;
     public static Weapon activeWeapon = Weapon.Sword;
     private Weapon lastActiveWeapon;
@@ -36,11 +34,6 @@ public class PlayerShooting : MonoBehaviour
         // if(UIManager.isPaused) return;
         Attack();
         AttackBox.SetActive(weapon.canAttack);
-        if(weapon.canAttack)
-        {
-            audioSource.clip = clip;
-            audioSource.Play();
-        }
     }
     void Attack()
     {

@@ -352,6 +352,7 @@ GameObject:
   - component: {fileID: 1880934935}
   - component: {fileID: 1880934934}
   - component: {fileID: 1880934936}
+  - component: {fileID: 1880934937}
   m_Layer: 0
   m_Name: torso
   m_TagString: Untagged
@@ -454,8 +455,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b99507f8cae694f83d1cbe77d2ea41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 2099291083}
   AttackBox: {fileID: 1999746689}
+--- !u!114 &1880934937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880934932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dfc74b96d4deb51fb5a1f60365f4fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canAttack: 1
 --- !u!1 &1999746689
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,6 +479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1999746690}
   - component: {fileID: 1999746691}
+  - component: {fileID: 1999746692}
   m_Layer: 0
   m_Name: AttackBox
   m_TagString: Untagged
@@ -534,6 +548,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.5836842, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1999746692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999746689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e19ac148ffbb7ce9f89ef843bc7695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hit: {fileID: 8300000, guid: a90e09c6a4aad7757800618dda03411d, type: 3}
+  noHit: {fileID: 8300000, guid: 52e8b6a38dc5ef088b66488ed92b5689, type: 3}
+  audioSource: {fileID: 2099291083}
 --- !u!1 &2099291078
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,7 +595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb053cba405a9b910bbaf0adec627f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: 0
+  player: 1
   maxHealth: 0
   currentHealth: 0
   selfRigidBody: {fileID: 0}
@@ -673,7 +702,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
