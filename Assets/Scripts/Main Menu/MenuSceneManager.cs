@@ -19,8 +19,8 @@ public class MenuSceneManager : MonoBehaviour
     //     SceneManager.LoadScene("");
     // }
 
-    // public void Quit()
-    // {
-    //     Application.Quit();
-    // }
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
