@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class BasicEnemy : BaseEntity
 {
+    Vector3 stunpos;
     public int speed;
     public Animator anim;
     private bool stunned = false;
@@ -22,7 +23,11 @@ public class BasicEnemy : BaseEntity
     void Update()
     {
         Vector3 direction = playerObj.transform.position - transform.position;
-        if(stunned) return;
+        if(stunned)
+        {
+            transform.position = stunpos;
+            return;
+        }
         anim.Play("EnemyWalking");
         transform.position = Vector2.MoveTowards(transform.position, playerObj.transform.position, speed * Time.deltaTime);
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, Vector2.SignedAngle(Vector2.up, direction)));
@@ -30,6 +35,7 @@ public class BasicEnemy : BaseEntity
     }
     public void Stun()
     {
+        stunpos = transform.position;
         anim.Play("BlockEnemy");
         StartCoroutine(CoolDown(timer));
     }
