@@ -24,6 +24,9 @@ public class AttackBoxScript : MonoBehaviour
             return;
         }
         else if(col.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("front hit hit");
             col.gameObject.GetComponent<BasicEnemy>()?.Stun();
+        }
     }
 }
